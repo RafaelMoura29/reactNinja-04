@@ -15,15 +15,16 @@ class App extends PureComponent {
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/sobre">Sobre</Link></li>
+            <li><Link to="/contato">Contato</Link></li>
             <li><Link to="/blog">Blog</Link></li>
           </ul>
 
-          <switch>
+          <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/sobre" component={Sobre} />
+            <Route path="/(sobre|contato)" component={Page} />
             <Route path="/blog" component={Blog} />
             <Route component={Error404} />
-          </switch>
+          </Switch>
 
         </div>
       </BrowserRouter>
@@ -39,9 +40,12 @@ const Home = () => (
   <h1>Home</h1>
 )
 
-const Sobre = () => (
-  <h1>Sobre</h1>
+const Page = ({ match }) => (
+  <div>
+    <h1>{match.url}</h1>
+  </div>
 )
+
 
 const Blog = () => (
   <div>
@@ -50,8 +54,17 @@ const Blog = () => (
       <li><Link to="/blog/post-1">Post 1</Link></li>
       <li><Link to="/blog/post-2">Post 2</Link></li>
     </ul>
-    <Route path="/blog/:post" component={Post} />
-    <Route exact path="/blog" component={NoPosts} />
+    <Switch>
+      <Route path="/blog/:post(post-[12])" component={Post} />
+      <Route exact path="/blog" component={NoPosts} />
+      <Route component={Post404} />
+    </Switch>
+  </div>
+)
+
+const Post404 = () => (
+  <div>
+    <h2>Esse post não existe</h2>
   </div>
 )
 
