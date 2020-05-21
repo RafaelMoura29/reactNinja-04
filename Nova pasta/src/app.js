@@ -55,8 +55,8 @@ const Blog = () => (
       <li><NavLink to="/blog/post-2">Post 2</NavLink></li>
     </ul>
     <Switch>
+      <Route exact path="/blog" render={() => <NoPosts numberOfPosts={2}/>} />
       <Route path="/blog/:post(post-[12])" component={Post} />
-      <Route exact path="/blog" component={NoPosts} />
       <Route component={Post404} />
     </Switch>
   </div>
@@ -74,8 +74,8 @@ const Post = ({ match }) => (
   </div>
 )
 
-const NoPosts = ({ match }) => (
-  <p>Selecione um post</p>
+const NoPosts = ({ numberOfPosts }) => (
+  <p>Selecione um dos {numberOfPosts} posts</p>
 )
 
 export default App
