@@ -1,7 +1,7 @@
 'use strict'
 
 import React, { PureComponent } from 'react'
-import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, NavLink, Route, Switch } from 'react-router-dom';
 
 import './css/style.css'
 
@@ -13,10 +13,10 @@ class App extends PureComponent {
         <div>
 
           <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/sobre">Sobre</Link></li>
-            <li><Link to="/contato">Contato</Link></li>
-            <li><Link to="/blog">Blog</Link></li>
+            <li><NavLink exact to="/">Home</NavLink></li>
+            <li><NavLink to="/sobre">Sobre</NavLink></li>
+            <li><NavLink to="/contato">Contato</NavLink></li>
+            <li><NavLink to="/blog">Blog</NavLink></li>
           </ul>
 
           <Switch>
@@ -51,8 +51,8 @@ const Blog = () => (
   <div>
     <h1>Blog</h1>
     <ul>
-      <li><Link to="/blog/post-1">Post 1</Link></li>
-      <li><Link to="/blog/post-2">Post 2</Link></li>
+      <li><NavLink to="/blog/post-1">Post 1</NavLink></li>
+      <li><NavLink to="/blog/post-2">Post 2</NavLink></li>
     </ul>
     <Switch>
       <Route path="/blog/:post(post-[12])" component={Post} />
